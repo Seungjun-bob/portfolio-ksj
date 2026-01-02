@@ -32,6 +32,15 @@ export default function ProjectDetail() {
         ← 프로젝트 목록으로
       </Link>
 
+      <section className="bg-gray-50 rounded-lg p-6 mb-8">
+        <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">
+          이 프로젝트에서 배운 것
+        </p>
+        <p className="text-xl font-medium text-gray-800 leading-relaxed">
+          "{project.keyTakeaway}"
+        </p>
+      </section>
+
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-3">
           {project.title}
@@ -61,8 +70,10 @@ export default function ProjectDetail() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Problem</h2>
-          <ul className="space-y-2">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            해결해야 했던 문제
+          </h2>
+          <ul className="space-y-2 mb-6">
             {project.problem.map((item, index) => (
               <li key={index} className="flex gap-3 text-gray-700">
                 <span className="text-gray-400 mt-1">•</span>
@@ -70,11 +81,11 @@ export default function ProjectDetail() {
               </li>
             ))}
           </ul>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">My Role</h2>
-          <p className="text-gray-700 leading-relaxed">{project.myRole}</p>
+          <div className="border-t border-gray-200 pt-4">
+            <p className="text-gray-700 leading-relaxed">
+              <span className="font-semibold">나의 역할:</span> {project.myRole}
+            </p>
+          </div>
         </section>
 
         <section>
@@ -142,7 +153,7 @@ export default function ProjectDetail() {
             {project.results.map((result, index) => (
               <div key={index} className="flex gap-3">
                 <span className="text-gray-400 mt-1">
-                  {result.type === 'quantitative' ? '📊' : '✓'}
+                  {result.type === 'quantitative' ? '•' : '•'}
                 </span>
                 <div>
                   <p className="text-gray-700">{result.description}</p>
@@ -157,9 +168,46 @@ export default function ProjectDetail() {
           </div>
         </section>
 
+        {project.improvements && project.improvements.length > 0 && (
+          <section>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              다시 한다면 다르게 할 것들
+            </h2>
+            <div className="space-y-6">
+              {project.improvements.map((item, index) => (
+                <div key={index} className="bg-amber-50 p-6 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                    {item.title}
+                  </h3>
+                  <div className="space-y-3">
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-700 mb-1">
+                        당시 상황
+                      </h4>
+                      <p className="text-gray-600">{item.situation}</p>
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-700 mb-1">
+                        결과
+                      </h4>
+                      <p className="text-gray-600">{item.consequence}</p>
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-700 mb-1">
+                        다시 한다면
+                      </h4>
+                      <p className="text-gray-600">{item.wouldDoDifferently}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            Retrospective
+            이 프로젝트에서 얻은 것
           </h2>
           <ul className="space-y-3">
             {project.retrospective.map((item, index) => (

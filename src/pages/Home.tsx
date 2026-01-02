@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { personalInfo } from '../data/personalInfo'
 import { skills } from '../data/skills'
 import { projects } from '../data/projects'
+import PhilosophySection from '../components/PhilosophySection'
 
 export default function Home() {
   const featuredProjects = projects.slice(0, 2)
@@ -9,18 +10,24 @@ export default function Home() {
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
       <section className="mb-16">
-        <h1 className="text-4xl font-bold text-gray-900 mb-2">
-          {personalInfo.name}
-        </h1>
-        <p className="text-xl text-gray-600 mb-8">
-          {personalInfo.title}
-        </p>
-        <div className="space-y-4 text-gray-700 leading-relaxed">
-          {personalInfo.introduce.map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
-          ))}
+        <div className="flex flex-col md:flex-row gap-8 items-start">
+          <img
+            src="/images/seungjun-picture.png"
+            alt={personalInfo.name}
+            className="w-56 h-56 rounded-lg object-contain border-4 border-gray-100 shadow-lg bg-white"
+          />
+          <div className="flex-1">
+            <p className="text-2xl md:text-3xl font-medium text-gray-800 mb-4 leading-relaxed">
+              "{personalInfo.coreMessage}"
+            </p>
+            <p className="text-lg text-gray-600">
+              {personalInfo.name} | {personalInfo.title}
+            </p>
+          </div>
         </div>
       </section>
+
+      <PhilosophySection principles={personalInfo.philosophyPrinciples} />
 
       <section className="mb-16">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Skills</h2>
@@ -62,13 +69,15 @@ export default function Home() {
               to={`/projects/${project.id}`}
               className="block p-6 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors"
             >
-              <div className="flex justify-between items-start mb-3">
-                <h3 className="text-xl font-semibold text-gray-900">
-                  {project.title}
-                </h3>
-                <span className="text-sm text-gray-500">{project.period}</span>
-              </div>
-              <p className="text-gray-600 mb-4">{project.description}</p>
+              <p className="text-lg font-medium text-gray-800 mb-3">
+                "{project.keyTakeaway}"
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                {project.title}
+              </h3>
+              <p className="text-sm text-gray-500 mb-4">
+                {project.period} | {project.company}
+              </p>
               <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
                   <span

@@ -13,12 +13,17 @@ export interface Project {
   challenges: Challenge[]
   results: Result[]
   retrospective: string[]
+  keyTakeaway: string
+  improvements?: Improvement[]
 }
 
 export interface DecisionItem {
   title: string
+  choice?: string
+  alternatives?: string[]
   description: string
   reason: string
+  outcome?: string
 }
 
 export interface Challenge {
@@ -43,6 +48,8 @@ export interface PersonalInfo {
   blog: string
   github: string
   introduce: string[]
+  coreMessage: string
+  philosophyPrinciples: PhilosophyPrinciple[]
 }
 
 export interface Education {
@@ -55,4 +62,19 @@ export interface Education {
 export interface Skill {
   category: string
   items: string[]
+}
+
+export interface PhilosophyPrinciple {
+  verse: number
+  poem: string
+  principle: string
+  description: string
+  linkedProject: string
+}
+
+export interface Improvement {
+  title: string
+  situation: string
+  consequence: string
+  wouldDoDifferently: string
 }

@@ -2,27 +2,27 @@ import { Skill } from '../types'
 
 export const skills: Skill[] = [
   {
-    category: 'Language',
-    items: ['JavaScript', 'TypeScript', 'Python', 'Kotlin', 'JAVA', 'SQL', 'Bash']
+    category: 'Backend',
+    items: ['Kotlin/Spring Boot', 'Node.js (Express/NestJS)', 'Java/Tomcat', 'Python/Django', 'REST API']
   },
   {
-    category: 'Framework',
-    items: ['Spring Boot', 'Node.js (Express/NestJS)', 'Chart.js', 'Next.js']
-  },
-  {
-    category: 'Infra/Cloud',
-    items: ['GCP', 'AWS', 'Azure', 'Linux', 'Github Actions']
+    category: 'Infra & DevOps',
+    items: ['GCP (Bastion Host, Private Network, Cloud Armor)', 'AWS (Lightsail, Lambda, RDS)', 'Linux', 'CI/CD (Github Actions)', 'Docker']
   },
   {
     category: 'Database',
-    items: ['MySQL', 'MariaDB', 'PostgreSQL', 'BigQuery', 'SQLite']
+    items: ['MySQL', 'MariaDB', 'PostgreSQL', 'BigQuery']
   },
   {
-    category: 'Tools',
-    items: ['Git', 'Jira', 'Slack', 'Figma', 'Notion']
+    category: 'AI & Agent',
+    items: ['Claude Code Agent', 'Claude Agent SDK', 'Llama (fine tuning)']
   },
   {
-    category: 'AI',
-    items: ['Claude Code', 'Claude Agent SDK', 'Llama (fine tuning)']
+    category: 'Language',
+    items: ['JavaScript', 'TypeScript', 'Kotlin', 'Java', 'Python', 'SQL', 'Bash']
+  },
+  {
+    category: 'Collaboration',
+    items: ['Git/GitHub', 'Jira', 'Slack', 'Notion', '영어 커뮤니케이션 (해외 협업)']
   }
 ]
