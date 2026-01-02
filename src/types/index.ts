@@ -1,8 +1,11 @@
+export type ProjectType = 'development' | 'maintenance' | 'both'
+
 export interface Project {
   id: string
   title: string
   period: string
   company: string
+  projectType: ProjectType
   description: string
   tags: string[]
   thumbnail?: string
@@ -47,9 +50,9 @@ export interface PersonalInfo {
   phone: string
   blog: string
   github: string
-  introduce: string[]
+  tagline: string
   coreMessage: string
-  philosophyPrinciples: PhilosophyPrinciple[]
+  coreMessageContext: string
 }
 
 export interface Education {
@@ -64,17 +67,14 @@ export interface Skill {
   items: string[]
 }
 
-export interface PhilosophyPrinciple {
-  verse: number
-  poem: string
-  principle: string
-  description: string
-  linkedProject: string
-}
-
 export interface Improvement {
   title: string
   situation: string
   consequence: string
   wouldDoDifferently: string
+}
+
+export interface AboutSection {
+  title: string
+  content: string
 }

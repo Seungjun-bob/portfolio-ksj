@@ -27,6 +27,12 @@ export default function Layout({ children }: LayoutProps) {
                 Home
               </Link>
               <Link
+                to="/about"
+                className={`${isActive('/about') ? 'text-gray-900 font-medium' : 'text-gray-600 hover:text-gray-900'}`}
+              >
+                About
+              </Link>
+              <Link
                 to="/projects"
                 className={`${isActive('/projects') || location.pathname.startsWith('/projects/') ? 'text-gray-900 font-medium' : 'text-gray-600 hover:text-gray-900'}`}
               >
