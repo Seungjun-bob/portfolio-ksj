@@ -16,7 +16,7 @@ export default function Home() {
           <img
             src="/images/seungjun-1.jpeg"
             alt={personalInfo.name}
-            className="w-32 h-44 md:w-[17rem] md:h-[22.5rem] rounded-lg object-cover shadow-lg flex-shrink-0"
+            className="w-32 h-44 md:w-[15rem] md:h-[19rem] rounded-lg object-cover shadow-lg flex-shrink-0"
           />
           <div className="flex-1 flex flex-col justify-between">
             <h1 className="text-3xl md:text-4xl font-bold leading-tight text-gray-900 mb-3">
@@ -33,7 +33,7 @@ export default function Home() {
             </p>
 
             {/* 핵심 수치 */}
-            <div className="flex gap-6 md:gap-8 mb-4 md:mb-6 pt-4 md:pt-6 border-t border-gray-200">
+            <div className="flex gap-6 md:gap-8 pt-4 md:pt-6 border-t border-gray-200">
               <div>
                 <p className="text-xl md:text-2xl font-bold text-gray-900">4년차</p>
                 <p className="text-xs md:text-sm text-gray-500">경력 (2022~)</p>
@@ -42,23 +42,6 @@ export default function Home() {
                 <p className="text-xl md:text-2xl font-bold text-gray-900">만 30세</p>
                 <p className="text-xs md:text-sm text-gray-500">1996년생</p>
               </div>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-4">
-              <a
-                href="#about"
-                className="text-base text-gray-600 hover:text-gray-900 hover:underline inline-flex items-center gap-1 py-2 px-1"
-              >
-                더 알아보기
-                <span className="text-sm">→</span>
-              </a>
-              <span className="text-gray-300 hidden md:inline">|</span>
-              <a
-                href={`mailto:${personalInfo.email}`}
-                className="text-base text-gray-600 hover:text-gray-900 hover:underline inline-flex items-center gap-2 py-2 px-1"
-              >
-                {personalInfo.email}
-              </a>
             </div>
           </div>
         </div>

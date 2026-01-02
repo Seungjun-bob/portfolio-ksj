@@ -58,7 +58,7 @@ export const insights: Insight[] = [
 
 export const coreStrengths = {
   title: '1인 Full Stack으로 시스템을 처음부터 끝까지 책임집니다',
-  description: '2022년부터 KB손해보험, 삼성전자, KIA 프로젝트에서 설계, 개발, 배포, 운영까지 담당하고 있습니다.'
+  description: '2022년부터 KB손해보험, 삼성전자, KIA Mexico 프로젝트에서 설계, 개발, 배포, 운영까지 담당하고 있습니다.'
 }
 
 // KIA 통합 프로젝트 정보
