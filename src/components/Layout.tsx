@@ -1,16 +1,10 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 interface LayoutProps {
   children: React.ReactNode
 }
 
 export default function Layout({ children }: LayoutProps) {
-  const location = useLocation()
-
-  const isActive = (path: string) => {
-    return location.pathname === path
-  }
-
   return (
     <div className="min-h-screen flex flex-col">
       <header className="bg-white border-b border-gray-200">
@@ -20,30 +14,36 @@ export default function Layout({ children }: LayoutProps) {
               강승준
             </Link>
             <div className="flex gap-6">
-              <Link
-                to="/"
-                className={`${isActive('/') ? 'text-gray-900 font-medium' : 'text-gray-600 hover:text-gray-900'}`}
+              <a
+                href="#"
+                className="text-gray-600 hover:text-gray-900"
+                onClick={(e) => {
+                  e.preventDefault()
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                }}
               >
                 Home
-              </Link>
-              <Link
-                to="/about"
-                className={`${isActive('/about') ? 'text-gray-900 font-medium' : 'text-gray-600 hover:text-gray-900'}`}
+              </a>
+              <a
+                href="#about"
+                className="text-gray-600 hover:text-gray-900"
+                onClick={(e) => {
+                  e.preventDefault()
+                  document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })
+                }}
               >
                 About
-              </Link>
-              <Link
-                to="/projects"
-                className={`${isActive('/projects') || location.pathname.startsWith('/projects/') ? 'text-gray-900 font-medium' : 'text-gray-600 hover:text-gray-900'}`}
-              >
-                Projects
-              </Link>
-              <Link
-                to="/contact"
-                className={`${isActive('/contact') ? 'text-gray-900 font-medium' : 'text-gray-600 hover:text-gray-900'}`}
+              </a>
+              <a
+                href="#contact"
+                className="text-gray-600 hover:text-gray-900"
+                onClick={(e) => {
+                  e.preventDefault()
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+                }}
               >
                 Contact
-              </Link>
+              </a>
             </div>
           </div>
         </nav>
