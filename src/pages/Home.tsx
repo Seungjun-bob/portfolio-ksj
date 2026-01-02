@@ -1,8 +1,7 @@
-import { Link } from 'react-router-dom'
 import { personalInfo } from '../data/personalInfo'
 import { projects } from '../data/projects'
-import { careerSummary, coreSkills, coreStrengths, kiaIntegratedProject, otherSkills } from '../data/summary'
-import { aboutSections, aboutSummary } from '../data/about'
+import { coreSkills, coreStrengths, kiaIntegratedProject, otherSkills } from '../data/summary'
+import { aboutSections } from '../data/about'
 
 export default function Home() {
   // 대표 프로젝트: KB, 삼성, KIA 통합
