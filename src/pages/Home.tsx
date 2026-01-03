@@ -14,7 +14,7 @@ export default function Home() {
       <section className="mb-12 md:mb-20">
         <div className="flex flex-col md:flex-row gap-6 md:gap-8 md:items-stretch items-center">
           <img
-            src="/images/seungjun-1.jpeg"
+            src="/images/seungjun-2.jpeg"
             alt={personalInfo.name}
             className="w-32 h-44 md:w-[15rem] md:h-[19rem] rounded-lg object-cover shadow-lg flex-shrink-0"
           />
