@@ -42,6 +42,10 @@ export default function Home() {
                 <p className="text-xl md:text-2xl font-bold text-gray-900">만 30세</p>
                 <p className="text-xs md:text-sm text-gray-500">1996년생</p>
               </div>
+              <div>
+                <p className="text-xl md:text-2xl font-bold text-gray-900">가천대학교</p>
+                <p className="text-xs md:text-sm text-gray-500">산업경영공학과·데이터과학</p>
+              </div>
             </div>
           </div>
         </div>
@@ -51,7 +55,7 @@ export default function Home() {
       <section className="mb-12 md:mb-20">
         <div className="mb-6 md:mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
-            대표 프로젝트
+            Featured Projects
           </h2>
           <p className="text-base text-gray-600">
             설계부터 운영까지 1인 Full Stack으로 담당한 프로젝트입니다.
@@ -61,14 +65,35 @@ export default function Home() {
           {/* KB 프로젝트 */}
           <div className="p-4 md:p-6 border border-gray-200 rounded-lg hover:border-gray-400 hover:shadow-sm transition-all bg-white">
             <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2 md:mb-3">
-              <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-1 md:mb-0">
-                {kbProject.title}
-              </h3>
-              <span className="text-xs md:text-sm text-gray-500">
-                {kbProject.period.split('(')[0].trim()}
-              </span>
+              <div className="flex items-center gap-2 mb-1 md:mb-0">
+                <h3 className="text-base md:text-lg font-semibold text-gray-900">
+                  {kbProject.title}
+                </h3>
+                <span className="hidden md:inline px-2 py-0.5 text-xs bg-blue-100 text-blue-700 rounded">
+                  개발
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs md:text-sm text-gray-500">
+                  {kbProject.period.split('(')[0].trim()}
+                </span>
+                <span className="md:hidden px-2 py-0.5 text-xs bg-blue-100 text-blue-700 rounded">
+                  개발
+                </span>
+              </div>
             </div>
             <p className="text-sm text-gray-600 mb-3">{kbProject.description}</p>
+
+            {kbProject.mainTasks && (
+              <ul className="text-sm text-gray-700 mb-3 space-y-1">
+                {kbProject.mainTasks.map((task, idx) => (
+                  <li key={idx} className="flex">
+                    <span className="mr-2 text-gray-400">•</span>
+                    <span>{task}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
 
             <div className="flex flex-wrap gap-1.5">
               {kbProject.tags.slice(0, 4).map((tag) => (
@@ -85,14 +110,35 @@ export default function Home() {
           {/* 삼성 프로젝트 */}
           <div className="p-4 md:p-6 border border-gray-200 rounded-lg hover:border-gray-400 hover:shadow-sm transition-all bg-white">
             <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2 md:mb-3">
-              <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-1 md:mb-0">
-                {samsungProject.title}
-              </h3>
-              <span className="text-xs md:text-sm text-gray-500">
-                {samsungProject.period.split('(')[0].trim()}
-              </span>
+              <div className="flex items-center gap-2 mb-1 md:mb-0">
+                <h3 className="text-base md:text-lg font-semibold text-gray-900">
+                  {samsungProject.title}
+                </h3>
+                <span className="hidden md:inline px-2 py-0.5 text-xs bg-gray-200 text-gray-600 rounded">
+                  운영
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs md:text-sm text-gray-500">
+                  {samsungProject.period.split('(')[0].trim()}
+                </span>
+                <span className="md:hidden px-2 py-0.5 text-xs bg-gray-200 text-gray-600 rounded">
+                  운영
+                </span>
+              </div>
             </div>
             <p className="text-sm text-gray-600 mb-3">{samsungProject.description}</p>
+
+            {samsungProject.mainTasks && (
+              <ul className="text-sm text-gray-700 mb-3 space-y-1">
+                {samsungProject.mainTasks.map((task, idx) => (
+                  <li key={idx} className="flex">
+                    <span className="mr-2 text-gray-400">•</span>
+                    <span>{task}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
 
             <div className="flex flex-wrap gap-1.5">
               {samsungProject.tags.slice(0, 4).map((tag) => (
@@ -109,14 +155,35 @@ export default function Home() {
           {/* KIA 통합 프로젝트 */}
           <div className="p-4 md:p-6 border border-gray-200 rounded-lg hover:border-gray-400 hover:shadow-sm transition-all bg-white">
             <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2 md:mb-3">
-              <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-1 md:mb-0">
-                {kiaIntegratedProject.title}
-              </h3>
-              <span className="text-xs md:text-sm text-gray-500">
-                {kiaIntegratedProject.period}
-              </span>
+              <div className="flex items-center gap-2 mb-1 md:mb-0">
+                <h3 className="text-base md:text-lg font-semibold text-gray-900">
+                  {kiaIntegratedProject.title}
+                </h3>
+                <span className="hidden md:inline px-2 py-0.5 text-xs bg-green-100 text-green-700 rounded">
+                  개발 및 운영
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs md:text-sm text-gray-500">
+                  {kiaIntegratedProject.period}
+                </span>
+                <span className="md:hidden px-2 py-0.5 text-xs bg-green-100 text-green-700 rounded">
+                  개발 및 운영
+                </span>
+              </div>
             </div>
             <p className="text-sm text-gray-600 mb-3">{kiaIntegratedProject.description}</p>
+
+            {kiaIntegratedProject.mainTasks && (
+              <ul className="text-sm text-gray-700 mb-3 space-y-1">
+                {kiaIntegratedProject.mainTasks.map((task, idx) => (
+                  <li key={idx} className="flex">
+                    <span className="mr-2 text-gray-400">•</span>
+                    <span>{task}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
 
             <div className="flex flex-wrap gap-1.5">
               {kiaIntegratedProject.tags.slice(0, 4).map((tag) => (
@@ -135,7 +202,7 @@ export default function Home() {
       {/* Skills - 주요 스킬 */}
       <section className="mb-12 md:mb-20">
         <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6">
-          주요 스킬
+          Skills
         </h2>
 
         {/* Core 스킬 */}

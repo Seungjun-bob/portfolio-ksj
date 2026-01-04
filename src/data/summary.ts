@@ -57,8 +57,8 @@ export const insights: Insight[] = [
 ]
 
 export const coreStrengths = {
-  title: '1인 Full Stack으로 시스템을 처음부터 끝까지 책임집니다',
-  description: '2022년부터 KB손해보험, 삼성전자, KIA Mexico 프로젝트에서 설계, 개발, 배포, 운영까지 담당하고 있습니다.'
+  title: '백엔드를 중심으로 프론트엔드와 인프라 전반을 1인으로 설계·개발·운영했습니다.',
+  description: '2022년부터 KB손해보험, 삼성전자, KIA Mexico 프로젝트를 담당하고 있습니다.'
 }
 
 // KIA 통합 프로젝트 정보
@@ -66,16 +66,15 @@ export const kiaIntegratedProject = {
   id: 'kia-integrated',
   title: 'KIA Mexico 사내 업무 시스템',
   period: '2022.10 ~ 현재',
+  projectType: 'both' as const,  // 개발 및 운영
   company: '빅마음 (Bigmaum)',
-  description: 'EHS, Facilities, VoC 3개 시스템을 영어로 해외 협업하여 설계·개발·운영',
-  myRole: '1인 Full Stack으로 3개 시스템 설계, 개발, 운영 전반 담당. 영어로 해외 협업.',
-  implementations: [
-    'EHS 통합 포털 (의료/안전/환경 업무 통합)',
-    'Facilities 워크플로우 (시설 관리 전 주기)',
-    'VoC 실시간 대시보드 (공장 대형 스크린)',
-    'i18n 다국어 지원 (스페인어/영어)',
-    'DeepL API 자동 번역',
-    'HR 시스템 연동 및 ESG 데이터 자동화'
+  description: '해외 법인의 VoC·Facilities·EHS 사내 업무 시스템을 개별적으로 유지보수하며 백엔드·프론트(ejs) 전반의 기능 확장과 운영을 담당',
+  myRole: '1인 Full Stack으로 3개 시스템 설계, 개발, 운영 전반 담당',
+  mainTasks: [
+    'KIA Mexico 사내 VoC, Facilities, EHS 업무를 통합 관리하는 내부 시스템군을 단독 설계·개발',
+    'VOC 텍스트 업로드 및 자동 번역 파이프라인과 Device UUID 기반 권한 관리 로직 구현',
+    '시설 관리 요청·결재·업체 견적 관리와 EHS 사건·의료·환경 데이터 처리 워크플로우 개발',
+    'Passport·Session 기반 인증·권한 미들웨어, 다국어(i18n), 로그·SMTP 알림 자동화 기능 구현'
   ],
   tags: ['Node.js', 'Express', 'PostgreSQL', 'MariaDB', 'DeepL API', 'Linux', 'i18n', 'JWT']
 }

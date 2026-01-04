@@ -9,6 +9,7 @@ export interface Project {
   description: string
   tags: string[]
   thumbnail?: string
+  mainTasks?: string[]
   context: string
   problem: string[]
   myRole: string

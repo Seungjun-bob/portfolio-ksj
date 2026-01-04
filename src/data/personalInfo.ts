@@ -2,7 +2,7 @@ import { PersonalInfo } from '../types'
 
 export const personalInfo: PersonalInfo = {
   name: '강승준',
-  title: 'Backend & Infra Engineer',
+  title: 'Backend Engineer',
   birth: '1996.01.05',
   email: 'rkdtmdwns0105@gmail.com',
   phone: '010-8368-0105',

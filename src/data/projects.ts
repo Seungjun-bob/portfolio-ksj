@@ -9,6 +9,12 @@ export const projects: Project[] = [
   projectType: 'development',
   description: 'Tableau 대시보드 데이터를 DRM 적용 상태로 안전하게 다운로드할 수 있는 서버 및 웹 시스템 구축',
   tags: ['Java', 'Tomcat', 'Tableau REST API', 'Fasoo DRM', 'JWT', 'SSO'],
+  mainTasks: [
+    'Tableau 대시보드 데이터를 DRM 적용 상태로 다운로드하는 Java/Tomcat 기반 웹 서버 단독 설계 및 구현',
+    'Tableau REST API 연동을 통한 서버 기반 데이터 다운로드 파이프라인 구축, 모든 파일에 Fasoo DRM 강제 적용',
+    'IE 기반 SSO 환경과 Edge 전용 Tableau 간 브라우저 불일치 문제를 JWT 토큰 브릿지 방식으로 해결',
+    'View별 사용자 접근 권한 관리 및 다운로드 이력 추적 기능 구현'
+  ],
 
   context:
     'KB손해보험에서 Tableau 대시보드 데이터 다운로드 시 DRM 적용이 필수였습니다. IE 기반 SSO 환경과 Edge 전용 Tableau 간 인증 연계 문제를 해결해야 했습니다.',
@@ -82,9 +88,15 @@ export const projects: Project[] = [
   title: '삼성전자 Digital Marketing 데이터 통합 대시보드',
   period: '2024.07 ~ 2025.08 (13개월)',
   company: '빅마음 (Bigmaum)',
-  projectType: 'both',
-  description: '인플루언서 성과 데이터를 통합 관리하고, 차트 및 Tableau 대시보드로 시각화하는 시스템 구축',
+  projectType: 'maintenance',
+  description: '삼성전자 디지털 마케팅 데이터 플랫폼의 GCP 환경 운영 및 백엔드 기능 개선 담당',
   tags: ['GCP', 'Kotlin', 'SpringBoot', 'MySQL', 'BigQuery', 'Chart.js', 'CI/CD'],
+  mainTasks: [
+    'GCP 보안 구성 최적화: Private IP 전환, Bastion Host 구축, Cloud Armor 정책 적용, MySQL SSL 인증',
+    'GitHub Actions 기반 CI/CD 파이프라인 구축, Git Flow 전략 적용, IaC 기반 무중단 배포 환경 구성',
+    'Bastion Host 자동 접속 스크립트, Tomcat 장애 자동 복구, 에러 로그 DB 저장 등 운영 자동화',
+    'Chart.js 커스텀 차트로 Tableau 성능 병목 해소, Skeleton UI 및 검색 상태 복원 로직으로 UX 개선'
+  ],
 
   context:
     '기존에 구축된 시스템을 인수해 안정적으로 운영하는 것이 핵심 과제였습니다. 운영 구조와 보안, 배포 체계가 정비되지 않은 상태였습니다.',

@@ -1,6 +1,6 @@
 # 강승준 포트폴리오
 
-Backend & Infra Engineer의 개인 웹 포트폴리오입니다.
+Backend Engineer의 개인 웹 포트폴리오입니다.
 
 ## 프로젝트 개요
 

@@ -1,6 +1,6 @@
 import { AboutSection } from '../types'
 
-export const aboutSummary = '실패에서 배우고, 문제 해결에서 보람을 느끼며, 함께 성장하는 개발자입니다.'
+export const aboutSummary = '실패에서 배우고, 문제를 해결하는 과정에서 보람을 느낍니다.'
 
 export const aboutSections: AboutSection[] = [
   {
