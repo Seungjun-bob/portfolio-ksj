@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://portfolio.seungjun.dev/sitemap.xml
+Sitemap: https://seungjun.dev/sitemap.xml
