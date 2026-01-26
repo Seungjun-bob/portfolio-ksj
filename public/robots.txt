@@ -1,0 +1,6 @@
+# 강승준 포트폴리오 - 모든 검색 엔진 허용
+User-agent: *
+Allow: /
+
+# 사이트맵 위치
+Sitemap: https://seungjun.dev/sitemap.xml
