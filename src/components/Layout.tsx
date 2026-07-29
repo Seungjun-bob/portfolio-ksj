@@ -9,43 +9,9 @@ export default function Layout({ children }: LayoutProps) {
     <div className="min-h-screen flex flex-col">
       <header className="bg-white border-b border-gray-200">
         <nav className="max-w-4xl mx-auto px-6 py-4">
-          <div className="flex justify-between items-center">
-            <Link to="/" className="text-xl font-bold text-gray-900">
-              강승준
-            </Link>
-            <div className="flex gap-6">
-              <a
-                href="#"
-                className="text-gray-600 hover:text-gray-900"
-                onClick={(e) => {
-                  e.preventDefault()
-                  window.scrollTo({ top: 0, behavior: 'smooth' })
-                }}
-              >
-                Home
-              </a>
-              <a
-                href="#about"
-                className="text-gray-600 hover:text-gray-900"
-                onClick={(e) => {
-                  e.preventDefault()
-                  document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })
-                }}
-              >
-                About
-              </a>
-              <a
-                href="#contact"
-                className="text-gray-600 hover:text-gray-900"
-                onClick={(e) => {
-                  e.preventDefault()
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
-                }}
-              >
-                Contact
-              </a>
-            </div>
-          </div>
+          <Link to="/" className="text-xl font-bold text-gray-900">
+            강승준
+          </Link>
         </nav>
       </header>
 

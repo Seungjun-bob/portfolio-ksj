@@ -34,6 +34,16 @@ docs/
 
 # Personal documents (resumes, etc)
 *.pdf
+# 이 저장소는 public이다. resume/ 에는 전화번호·생년월일·증명사진과 회사별 자기소개서가
+# 들어 있어 디렉터리째 제외한다. (*.pdf 만으로는 html·md·docx가 그대로 커밋된다)
+resume/
+
+# Stray .git copies left by sync tools
+.git */
+
+# Editor / tooling scratch
+.context/
+*.zip
 
 # Test coverage
 coverage

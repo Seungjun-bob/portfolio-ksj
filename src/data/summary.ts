@@ -15,12 +15,12 @@ export interface Insight {
 }
 
 export const careerSummary: CareerSummary = {
-  startDate: '2022.10',
-  totalProjects: 5,
+  startDate: '2022.07', // 입사일. 이력서(경력기술서)와 맞춘 값
+  totalProjects: 6,
   role: '1인 Full Stack (설계-개발-배포-운영)',
   clients: ['KB손해보험', '삼성전자', 'KIA'],
   overseasProjects: 3, // KIA 멕시코 3개
-  currentlyOperating: 2 // 삼성, KIA VoC
+  currentlyOperating: 3 // ORGNavi, 사내 업무 포털, KIA VoC
 }
 
 export const insights: Insight[] = [
@@ -58,11 +58,64 @@ export const insights: Insight[] = [
 
 export const coreStrengths = {
   title: '백엔드를 중심으로 프론트엔드와 인프라 전반을 1인으로 설계·개발·운영했습니다.',
-  description: '2022년부터 KB손해보험, 삼성전자, KIA Mexico 프로젝트를 담당하고 있습니다.'
+  description: '2022년부터 KB손해보험, 삼성전자, KIA Mexico의 시스템을 담당했고, 현재는 자사 SaaS와 사내 시스템을 만들고 있습니다.'
 }
 
+// 카드 표시 전용 프로젝트.
+// projects.ts의 Project는 상세 페이지용 전체 서사(context·problem·challenges·retrospective)를
+// 요구하는데 아래 프로젝트들은 상세 페이지가 없다. 그 필드를 빈 값으로 채우느니 카드에 실제로
+// 쓰이는 필드만 담아 따로 둔다.
+export interface ProjectCard {
+  id: string
+  title: string
+  period: string
+  projectType: 'development' | 'maintenance' | 'both'
+  company: string
+  description: string
+  myRole: string
+  mainTasks?: string[] // projects.ts의 Project와 같게 둬야 두 타입을 한 배열에 담을 수 있다
+  tags: string[]
+}
+
+export const orgNaviProject: ProjectCard = {
+  id: 'orgnavi',
+  title: 'ORGNavi 조직도 SaaS',
+  period: '2025.12 ~ 현재',
+  projectType: 'both',
+  company: '빅마음 (Bigmaum)',
+  description: '조직도 편집·인사 데이터 임포트·외부 DB 동기화를 하나로 묶은 멀티테넌트 B2B 조직도 서비스',
+  myRole: '주 개발자로 제품 기능 개발, 권한 모델 설계, 인프라 이전, 릴리스 체계 구축 담당',
+  mainTasks: [
+    '조직도 편집기·개편 시뮬레이터·조직 진단·관리 콘솔 구현, 계층 깊이와 평균 관리 범위 등 8개 지표를 서버에서 산출',
+    '고객사 간 데이터 혼입을 막기 위해 직원 식별자를 (site_id, emp_id) 복합 키로 구성하고 조회·수정 경로 전체에 테넌트 검증 적용',
+    '라이선스 좌석 수 확인과 저장 사이의 경합을 pg_advisory_xact_lock으로 차단, 잠금 순서를 고정해 데드락 방지',
+    'Replit 프로토타입을 AWS(EC2·RDS·S3)로 이전하고 테넌트 경계 계약 테스트를 CI에 편입'
+  ],
+  tags: ['React', 'React Flow', 'Express', 'Drizzle ORM', 'PostgreSQL', 'AWS', 'Claude Code']
+}
+
+export const workPortalProject: ProjectCard = {
+  id: 'work-portal',
+  title: '사내 업무 포털 (연차·결재)',
+  period: '2025.12 ~ 2026.06',
+  projectType: 'both',
+  company: '빅마음 (Bigmaum)',
+  description: 'Excel과 Power Automate로 운영되던 연차 관리를 대체한 사내 시스템. 요청이 아니라 직접 제안해 시작한 프로젝트',
+  myRole: '1인 풀스택 개발·운영, 연차 정책 정의 및 문서화',
+  mainTasks: [
+    '기능보다 정책을 먼저 확정. 누적 이월, 경력직 추가 연차의 연간 재부여와 미사용분 소멸, 당겨 쓴 연차의 차기 기간 차감 규칙을 정의 문서 하나로 정리',
+    '정의 문서를 기준으로 경계 조건을 검증해 당겨 쓴 연차가 다음 기간에 다시 차감되던 이중 차감 제거',
+    'Entra ID·Google SSO를 JWKS 공개키 기반 RS256 서명 검증으로 구현하고 audience·issuer까지 확인',
+    '노션·엑셀·CSV에 흩어져 있던 5년치 기록 837건을 이관, 재직 인원 12명 전원이 사용 중'
+  ],
+  tags: ['Next.js', 'NestJS', 'PostgreSQL', 'Entra ID SSO', 'AWS', 'Claude Code']
+}
+
+// 개인 사이드 프로젝트(츄디)는 이 사이트에 싣지 않는다. 공개 색인되는 페이지라
+// 사이드 서비스의 예약·매출 수치를 노출할 자리가 아니다. 이력서·자기소개서에는 들어간다.
+
 // KIA 통합 프로젝트 정보
-export const kiaIntegratedProject = {
+export const kiaIntegratedProject: ProjectCard = {
   id: 'kia-integrated',
   title: 'KIA Mexico 사내 업무 시스템',
   period: '2022.10 ~ 현재',
@@ -80,7 +133,7 @@ export const kiaIntegratedProject = {
 }
 
 // 주요 스킬
-export const coreSkills = ['Node.js', 'Express', 'Spring Boot', 'PostgreSQL', 'Claude Code']
+export const coreSkills = ['Node.js', 'Express', 'Spring Boot', 'PostgreSQL', 'TypeScript']
 export const otherSkills = [
   'Kotlin', 'Java', 'Python', 'JavaScript', 'TypeScript', 'PHP',
   'React', 'Next.js', 'NestJS', 'Django',
