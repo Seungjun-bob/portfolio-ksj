@@ -4,15 +4,59 @@ import { kiaIntegratedProject, orgChartProject, weddingMapProject, workPortalPro
 
 // 메인(SNS 랜딩) 표시용 대표 프로젝트 — 이름 + 한 줄 설명만.
 // title은 공유용으로 짧게 다듬은 표시명이며, 정식 명칭은 데이터(projects.ts)와 이력서 페이지에 그대로 유지.
-// 순서는 이력서 페이지·경력기술서와 같은 시간 역순. url은 외부에서 열어볼 수 있는 공개 서비스에만 둔다.
-const featured = [
-  { title: '결혼할지도', period: weddingMapProject.period, description: weddingMapProject.description, url: weddingMapProject.url },
+// 이력서 페이지와 같은 구성: 회사 프로젝트(시간 역순) 다음에 사이드 프로젝트를 따로 둔다.
+// url은 외부에서 열어볼 수 있는 공개 서비스에만 둔다.
+type FeaturedItem = { title: string; period: string; description: string; url?: string }
+
+const workProjects: FeaturedItem[] = [
   { title: '조직도 SaaS', period: orgChartProject.period, description: orgChartProject.description },
   { title: '사내 HR 시스템 (휴가·근태관리)', period: workPortalProject.period, description: workPortalProject.description },
   { title: 'KB손해보험 Tableau DRM', period: projects[0].period, description: projects[0].description },
   { title: '삼성전자 Digital Marketing 대시보드', period: projects[1].period, description: projects[1].description },
   { title: 'KIA Mexico 사내 업무 시스템', period: kiaIntegratedProject.period, description: kiaIntegratedProject.description },
 ]
+
+const sideProjects: FeaturedItem[] = [
+  { title: '결혼할지도', period: weddingMapProject.period, description: weddingMapProject.description, url: weddingMapProject.url },
+]
+
+function ProjectList({ heading, items }: { heading: string; items: FeaturedItem[] }) {
+  return (
+    <div className="mt-10 md:mt-12">
+      <h2 className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-4">
+        {heading}
+      </h2>
+      <ul className="space-y-5">
+        {items.map((project) => (
+          <li key={project.title}>
+            <div className="flex items-baseline justify-between gap-3">
+              <h3 className="text-base font-semibold text-gray-900">
+                {project.url ? (
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-4 decoration-gray-300 hover:decoration-gray-900"
+                  >
+                    {project.title} ↗
+                  </a>
+                ) : (
+                  project.title
+                )}
+              </h3>
+              <span className="flex-shrink-0 text-xs text-gray-400">
+                {project.period.split('(')[0].trim()}
+              </span>
+            </div>
+            <p className="mt-1 text-sm text-gray-600 leading-relaxed">
+              {project.description}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
 
 export default function Home() {
   return (
@@ -61,40 +105,9 @@ export default function Home() {
           </a>
         </div>
 
-        {/* 만든 것 */}
-        <div className="mt-10 md:mt-12">
-          <h2 className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-4">
-            Projects
-          </h2>
-          <ul className="space-y-5">
-            {featured.map((project) => (
-              <li key={project.title}>
-                <div className="flex items-baseline justify-between gap-3">
-                  <h3 className="text-base font-semibold text-gray-900">
-                    {project.url ? (
-                      <a
-                        href={project.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="underline underline-offset-4 decoration-gray-300 hover:decoration-gray-900"
-                      >
-                        {project.title} ↗
-                      </a>
-                    ) : (
-                      project.title
-                    )}
-                  </h3>
-                  <span className="flex-shrink-0 text-xs text-gray-400">
-                    {project.period.split('(')[0].trim()}
-                  </span>
-                </div>
-                <p className="mt-1 text-sm text-gray-600 leading-relaxed">
-                  {project.description}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {/* 만든 것 — 회사 프로젝트와 사이드 프로젝트를 나눠 보여준다 */}
+        <ProjectList heading="Work" items={workProjects} />
+        <ProjectList heading="Side Project" items={sideProjects} />
       </div>
     </div>
   )
