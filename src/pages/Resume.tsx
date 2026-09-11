@@ -5,26 +5,91 @@ import {
   coreSkills,
   coreStrengths,
   kiaIntegratedProject,
-  orgNaviProject,
+  orgChartProject,
   otherSkills,
+  weddingMapProject,
   workPortalProject,
 } from '../data/summary'
 import { aboutSections } from '../data/about'
 
 // 경력기술서와 같은 시간 역순.
 const featuredProjects: ProjectCard[] = [
-  orgNaviProject,
+  orgChartProject,
   workPortalProject,
   projects[0], // KB Tableau DRM
   projects[1], // 삼성전자 Digital Marketing
   kiaIntegratedProject,
 ]
 
+// 회사 경력과 섞이지 않도록 사이드 프로젝트는 별도 섹션으로 보여준다.
+const sideProjects: ProjectCard[] = [weddingMapProject]
+
 // 뱃지 문구와 색은 projectType에서 파생시킨다. 카드마다 손으로 적으면 데이터와 어긋난다.
 const badgeByType: Record<ProjectCard['projectType'], { label: string; className: string }> = {
   development: { label: '개발', className: 'bg-blue-100 text-blue-700' },
   maintenance: { label: '운영', className: 'bg-gray-200 text-gray-600' },
   both: { label: '개발 및 운영', className: 'bg-green-100 text-green-700' },
+}
+
+// Featured Projects와 Side Project 섹션이 같은 카드 마크업을 쓴다.
+function ProjectCardItem({ project }: { project: ProjectCard }) {
+  const badge = badgeByType[project.projectType]
+  return (
+    <div className="p-4 md:p-6 border border-gray-200 rounded-lg hover:border-gray-400 hover:shadow-sm transition-all bg-white">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2 md:mb-3">
+        <div className="flex items-center gap-2 mb-1 md:mb-0">
+          <h3 className="text-base md:text-lg font-semibold text-gray-900">
+            {project.title}
+          </h3>
+          <span className={`hidden md:inline px-2 py-0.5 text-xs rounded ${badge.className}`}>
+            {badge.label}
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="text-xs md:text-sm text-gray-500">
+            {project.period.split('(')[0].trim()}
+          </span>
+          <span className={`md:hidden px-2 py-0.5 text-xs rounded ${badge.className}`}>
+            {badge.label}
+          </span>
+        </div>
+      </div>
+      <p className="text-sm text-gray-600 mb-3">{project.description}</p>
+
+      {project.url && (
+        <a
+          href={project.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block mb-3 text-sm text-gray-600 underline underline-offset-2 hover:text-gray-900"
+        >
+          {new URL(project.url).host} ↗
+        </a>
+      )}
+
+      {project.mainTasks && (
+        <ul className="text-sm text-gray-700 mb-3 space-y-1">
+          {project.mainTasks.map((task, idx) => (
+            <li key={idx} className="flex">
+              <span className="mr-2 text-gray-400">•</span>
+              <span>{task}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <div className="flex flex-wrap gap-1.5">
+        {project.tags.slice(0, 4).map((tag) => (
+          <span
+            key={tag}
+            className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+    </div>
+  )
 }
 
 export default function Resume() {
@@ -82,57 +147,26 @@ export default function Resume() {
           </p>
         </div>
         <div className="space-y-4 md:space-y-6">
-          {featuredProjects.map((project) => {
-            const badge = badgeByType[project.projectType]
-            return (
-              <div
-                key={project.id}
-                className="p-4 md:p-6 border border-gray-200 rounded-lg hover:border-gray-400 hover:shadow-sm transition-all bg-white"
-              >
-                <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2 md:mb-3">
-                  <div className="flex items-center gap-2 mb-1 md:mb-0">
-                    <h3 className="text-base md:text-lg font-semibold text-gray-900">
-                      {project.title}
-                    </h3>
-                    <span className={`hidden md:inline px-2 py-0.5 text-xs rounded ${badge.className}`}>
-                      {badge.label}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs md:text-sm text-gray-500">
-                      {project.period.split('(')[0].trim()}
-                    </span>
-                    <span className={`md:hidden px-2 py-0.5 text-xs rounded ${badge.className}`}>
-                      {badge.label}
-                    </span>
-                  </div>
-                </div>
-                <p className="text-sm text-gray-600 mb-3">{project.description}</p>
+          {featuredProjects.map((project) => (
+            <ProjectCardItem key={project.id} project={project} />
+          ))}
+        </div>
+      </section>
 
-                {project.mainTasks && (
-                  <ul className="text-sm text-gray-700 mb-3 space-y-1">
-                    {project.mainTasks.map((task, idx) => (
-                      <li key={idx} className="flex">
-                        <span className="mr-2 text-gray-400">•</span>
-                        <span>{task}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-
-                <div className="flex flex-wrap gap-1.5">
-                  {project.tags.slice(0, 4).map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )
-          })}
+      {/* Side Project - 회사 밖에서 만든 공개 서비스 */}
+      <section className="mb-12 md:mb-20">
+        <div className="mb-6 md:mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+            Side Project
+          </h2>
+          <p className="text-base text-gray-600">
+            회사 밖에서 만들어 공개한 서비스입니다.
+          </p>
+        </div>
+        <div className="space-y-4 md:space-y-6">
+          {sideProjects.map((project) => (
+            <ProjectCardItem key={project.id} project={project} />
+          ))}
         </div>
       </section>
 

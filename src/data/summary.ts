@@ -20,7 +20,7 @@ export const careerSummary: CareerSummary = {
   role: '1인 Full Stack (설계-개발-배포-운영)',
   clients: ['KB손해보험', '삼성전자', 'KIA'],
   overseasProjects: 3, // KIA 멕시코 3개
-  currentlyOperating: 3 // ORGNavi, 사내 업무 포털, KIA VoC
+  currentlyOperating: 3 // 조직도 SaaS, 사내 HR 시스템, KIA VoC
 }
 
 export const insights: Insight[] = [
@@ -75,11 +75,12 @@ export interface ProjectCard {
   myRole: string
   mainTasks?: string[] // projects.ts의 Project와 같게 둬야 두 타입을 한 배열에 담을 수 있다
   tags: string[]
+  url?: string // 외부에서 열어볼 수 있는 공개 서비스만. 사내 시스템은 비워 둔다
 }
 
-export const orgNaviProject: ProjectCard = {
-  id: 'orgnavi',
-  title: 'ORGNavi 조직도 SaaS',
+export const orgChartProject: ProjectCard = {
+  id: 'org-chart',
+  title: '조직도 SaaS',
   period: '2025.12 ~ 현재',
   projectType: 'both',
   company: '빅마음 (Bigmaum)',
@@ -96,11 +97,11 @@ export const orgNaviProject: ProjectCard = {
 
 export const workPortalProject: ProjectCard = {
   id: 'work-portal',
-  title: '사내 업무 포털 (연차·결재)',
+  title: '사내 HR 시스템 구축 (휴가·근태관리)',
   period: '2025.12 ~ 2026.06',
   projectType: 'both',
   company: '빅마음 (Bigmaum)',
-  description: 'Excel과 Power Automate로 운영되던 연차 관리를 대체한 사내 시스템. 요청이 아니라 직접 제안해 시작한 프로젝트',
+  description: 'Excel과 Power Automate로 운영되던 연차 관리를 대체한 사내 HR 시스템',
   myRole: '1인 풀스택 개발·운영, 연차 정책 정의 및 문서화',
   mainTasks: [
     '기능보다 정책을 먼저 확정. 누적 이월, 경력직 추가 연차의 연간 재부여와 미사용분 소멸, 당겨 쓴 연차의 차기 기간 차감 규칙을 정의 문서 하나로 정리',
@@ -111,8 +112,26 @@ export const workPortalProject: ProjectCard = {
   tags: ['Next.js', 'NestJS', 'PostgreSQL', 'Entra ID SSO', 'AWS', 'Claude Code']
 }
 
-// 개인 사이드 프로젝트(츄디)는 이 사이트에 싣지 않는다. 공개 색인되는 페이지라
+// 수익 사업인 츄디(tool.chu-dy.com 포함)는 이 사이트에 싣지 않는다. 공개 색인되는 페이지라
 // 사이드 서비스의 예약·매출 수치를 노출할 자리가 아니다. 이력서·자기소개서에는 들어간다.
+// 결혼할지도는 수익 모델이 없는 개인 프로젝트라 싣는다.
+export const weddingMapProject: ProjectCard = {
+  id: 'wedding-map',
+  title: '결혼할지도 (웨딩홀 비교 지도)',
+  period: '2026.09 ~ 현재',
+  projectType: 'both',
+  company: '개인 프로젝트',
+  description: '웨딩홀을 알아보다 위치와 가격을 한눈에 비교할 수 없어 만든 지도 서비스. 전국 웨딩홀 781곳의 식대·대관료·보증인원을 비교하며, 공개 3일간 15,000명이 방문',
+  myRole: '1인 개발·운영 (데이터 수집·정제, 지도 UI, 배포)',
+  mainTasks: [
+    '아이웨딩·웨딩북·다이렉트·한국소비자원 공시 자료 등 형식이 서로 다른 가격 출처를 수집해 업체명·지역으로 매칭하고, 전화번호·주소로 중복을 병합. 가격마다 출처를 함께 표기',
+    '서버·DB 없이 데이터를 HTML에 포함한 정적 사이트로 GitHub Pages에 배포. 비교 목록은 브라우저(localStorage)에만 저장하고 공유는 URL로 처리해 회원가입 없이 사용',
+    '모바일에서 지도 줌이 끊기는 문제를 저사양 환경(CPU 6배 감속)에서 재현·측정해 원인(줌마다 오버레이 개별 재배치)을 찾고, 기본 마커로 전환해 줌 1회 멈춤을 156ms → 58ms로 단축. 대안인 클러스터링은 292~552ms로 더 느려 제외',
+    '공개 직후 GA4 실시간 활성 사용자 최대 6,411명(최근 30분 기준). Threads 소개 글 조회 10만 회·공유 700회 이상'
+  ],
+  tags: ['Python', 'JavaScript', 'Kakao Maps API', 'GitHub Pages', 'GA4'],
+  url: 'https://weddingmap.seungjun.dev'
+}
 
 // KIA 통합 프로젝트 정보
 export const kiaIntegratedProject: ProjectCard = {

@@ -1,13 +1,14 @@
 import { personalInfo } from '../data/personalInfo'
 import { projects } from '../data/projects'
-import { kiaIntegratedProject, orgNaviProject, workPortalProject } from '../data/summary'
+import { kiaIntegratedProject, orgChartProject, weddingMapProject, workPortalProject } from '../data/summary'
 
 // 메인(SNS 랜딩) 표시용 대표 프로젝트 — 이름 + 한 줄 설명만.
 // title은 공유용으로 짧게 다듬은 표시명이며, 정식 명칭은 데이터(projects.ts)와 이력서 페이지에 그대로 유지.
-// 순서는 이력서 페이지·경력기술서와 같은 시간 역순.
+// 순서는 이력서 페이지·경력기술서와 같은 시간 역순. url은 외부에서 열어볼 수 있는 공개 서비스에만 둔다.
 const featured = [
-  { title: 'ORGNavi 조직도 SaaS', period: orgNaviProject.period, description: orgNaviProject.description },
-  { title: '사내 업무 포털', period: workPortalProject.period, description: workPortalProject.description },
+  { title: '결혼할지도', period: weddingMapProject.period, description: weddingMapProject.description, url: weddingMapProject.url },
+  { title: '조직도 SaaS', period: orgChartProject.period, description: orgChartProject.description },
+  { title: '사내 HR 시스템 (휴가·근태관리)', period: workPortalProject.period, description: workPortalProject.description },
   { title: 'KB손해보험 Tableau DRM', period: projects[0].period, description: projects[0].description },
   { title: '삼성전자 Digital Marketing 대시보드', period: projects[1].period, description: projects[1].description },
   { title: 'KIA Mexico 사내 업무 시스템', period: kiaIntegratedProject.period, description: kiaIntegratedProject.description },
@@ -69,7 +70,20 @@ export default function Home() {
             {featured.map((project) => (
               <li key={project.title}>
                 <div className="flex items-baseline justify-between gap-3">
-                  <h3 className="text-base font-semibold text-gray-900">{project.title}</h3>
+                  <h3 className="text-base font-semibold text-gray-900">
+                    {project.url ? (
+                      <a
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline underline-offset-4 decoration-gray-300 hover:decoration-gray-900"
+                      >
+                        {project.title} ↗
+                      </a>
+                    ) : (
+                      project.title
+                    )}
+                  </h3>
                   <span className="flex-shrink-0 text-xs text-gray-400">
                     {project.period.split('(')[0].trim()}
                   </span>
